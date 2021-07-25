@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block head_content %} 
+
+{% endblock %} 
+
+{% block container %}
+{% for learningpath in learningpaths %}
+
+
+<div class="card" style="width: 18rem;">
+    <img src="{{learningpath.icon.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{learningpath.title}}</h5>
+      <p class="card-text">{{learningpath.description}}</p>
+      <a href="#" class="btn btn-primary">See course</a>
+    </div>
+  </div>
+
+
+{% endfor %}
+{% endblock %}
