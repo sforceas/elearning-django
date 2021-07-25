@@ -63,7 +63,7 @@ Functional requirementes of the application are described on the requirement tra
 
 |ID   	|Description  	|Source   	|Justification   	    |Release   	            |Test strategy  |UAT            |Status |Active |Flag   |Comments
 |---	|---	        |---        |---	                |---	                |---	        |---            |---    |---    |---    |---
-|1   	|   	        |           |   	                |      	                |   	        |               |       |       |       |
+|1   	|	        |           |   	                |      	                |   	        |               |       |       |       |
 |2  	|   	        |           |   	                |      	                |   	        |               |       |       |       |
 |3  	|   	        |           |   	                |      	                |   	        |               |       |       |       |
 |4  	|   	        |           |   	                |      	                |   	        |               |       |       |       |
