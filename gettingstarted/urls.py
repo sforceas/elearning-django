@@ -4,7 +4,8 @@ from django.contrib import admin
 
 admin.autodiscover()
 
-import hello.views
+from users import views as users_views
+from courses import views as courses_views
 
 """
 Librerias para poder visualizar imagenes o media desde el panel de administracion.
@@ -21,8 +22,12 @@ from django.conf.urls.static import static
 # Learn more here: https://docs.djangoproject.com/en/2.1/topics/http/urls/
 
 urlpatterns = [
-    path("", hello.views.index, name="index"),
-    path("db/", hello.views.db, name="db"),
+    
+       
+    path("",courses_views.index, name="index"),
+
+
+    #ADMIN
     path("admin/", admin.site.urls),
 
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # Configurado en settings.py para mostrar media durante desarrollo

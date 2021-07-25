@@ -5,7 +5,7 @@
 from django.contrib import admin
 
 #Models
-from courses.models import LearningPath, Course
+from courses.models import LearningPath, Course, Lesson
 
 # Inlime models
 
@@ -15,7 +15,16 @@ class CourseInline(admin.StackedInline):
     can_delete = False
     verbose_name = 'Course'
     verbose_name_plural = 'Courses'
-    
+
+class LessonInline(admin.StackedInline):
+    model = Lesson
+    extra=0
+    can_delete = False
+    verbose_name = 'Lesson'
+    verbose_name_plural = 'Lesson'
+
+
+
 # Register your models here.
 
 @admin.register(LearningPath)
@@ -41,15 +50,15 @@ class LearningPathAdmin(admin.ModelAdmin):
 
     readonly_fields = ('created','modified')
 
-
-
 @admin.register(Course)
 class Course(admin.ModelAdmin):
     """Course admin"""
     list_display = ('pk','title','learning_path','active_flag') # Campos que debe mostrar en el display de admin
     list_display_links=('pk','title','learning_path') # Elementos linkados al detalle
     list_editable=() # Elementos editables desde admin
-    
+    inlines=[LessonInline]
+
+
     search_field= (
         'title',
     )
