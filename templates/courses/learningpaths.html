@@ -5,18 +5,43 @@
 {% endblock %} 
 
 {% block container %}
-{% for learningpath in learningpaths %}
 
-
-<div class="card" style="width: 18rem;">
-    <img src="{{learningpath.icon.url}}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{learningpath.title}}</h5>
-      <p class="card-text">{{learningpath.description}}</p>
-      <a href="#" class="btn btn-primary">See course</a>
+<!--Intro container-->
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Dunia Kato Senegal</h1>
+      <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p>
+        <a href="#" class="btn btn-primary my-2">Main call to action</a>
+        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+      </p>
     </div>
   </div>
+</section>
+
+<!--Courses container-->
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+    {% for learningpath in learningpaths %}  
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+          <img src="{{learningpath.icon.url}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{learningpath.title}}</h5>
+            <p class="card-text">{{learningpath.description}}</p>
+            <a href="#" class="btn btn-primary">See course</a>
+            </div>
+          </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
 
 
-{% endfor %}
+
+
 {% endblock %}
