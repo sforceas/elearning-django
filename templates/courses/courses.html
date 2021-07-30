@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block head_content %} 
+
+{% endblock %} 
+
+{% block container %}
+
+<!--Intro container-->
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">{{learningpath.title}}</h1>
+      <h3 class="fw-light">Duration: {{path_duration}} hours</h3>
+      <p class="lead text-muted">{{learningpath.description}}</p>
+    </div>
+  </div>
+  
+<!--Courses container-->
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+    {% for course in courses %}  
+      <div class="col">
+        <div class="card" style="width: 100%; height: 500px;">
+          <img src="{{course.icon.url}}" class="card-img-top" alt="..." style="height: 50%; object-fit: cover">
+          <div class="card-body">
+            <h5 class="card-title">{{course.title}}</h5>
+            <p class="card-text">Duration: {{course.duration}} hours.</p>
+            <p class="card-text">{{course.description}}</p>
+            <p class="card-text">Teacher: {{course.teacher.get_full_name}}</p>
+
+            <a href="/course/{{course.pk}}" class="btn btn-primary">Go to course</a>
+            </div>
+          </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+
+{% endblock %}

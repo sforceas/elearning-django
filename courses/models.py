@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.aggregates import Max
 
 from users.models import User
 
@@ -7,7 +8,7 @@ class LearningPath(models.Model):
     """Learning Path model"""
     title=models.CharField(max_length=50)
     description=models.TextField(blank=True)
-    icon=models.ImageField(upload_to= "media/icons")
+    icon=models.ImageField(upload_to= "media/icons",blank=True)
 
     active_flag=models.BooleanField(default=False)
 
@@ -18,7 +19,7 @@ class LearningPath(models.Model):
     def __str__(self):
         """Return title."""
         return self.title
-
+    
 class Course(models.Model):
     """Course model"""
     title=models.CharField(max_length=50)
@@ -42,8 +43,11 @@ class Lesson(models.Model):
     """Lesson model"""
     title=models.CharField(max_length=50)
     description=models.TextField(blank=True)
-    video_path=models.URLField()
-    video_file=models.FileField(upload_to='media/lessons/video')
+    video_path=models.URLField(blank=True)
+    thumbnail=models.ImageField(upload_to= "media/icons",blank=True)
+    video=models.FileField(upload_to= "media/videos",blank=True)
+    attached_files=models.FileField(upload_to= "files/lessons",blank=True)
+
 
     teacher=models.ForeignKey(User,on_delete=models.PROTECT)
     course=models.ForeignKey(Course,on_delete=models.PROTECT)
