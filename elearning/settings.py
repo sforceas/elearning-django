@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "users",
     "courses",
-    "embed_video",
+    #"embed_video",
 ]
 
 MIDDLEWARE = [
