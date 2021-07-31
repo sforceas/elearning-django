@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load embed_video_tags %}
 
 {% block head_content %} 
 
@@ -13,10 +14,18 @@
       <h1 class="fw-light">{{lesson.title}}</h1>
       <p class="lead text-muted">{{lesson.description}}</p>
       <p class="lead text-muted">Teacher: {{lesson.teacher.get_full_name}}</p>
-      <p>{{lesson.video_path.text}}</p>
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="{{lesson.video_path}}" allowfullscreen></iframe>
-      </div>
+      
+      {# you can just embed #}
+      {% video item.video 'small' %}
+
+      {# or use variables (with embedding, too) #}
+      {% video item.video as my_video %}
+          URL: {{ my_video.url }}
+          Thumbnail: {{ my_video.thumbnail }}
+          Backend: {{ my_video.backend }}
+          {% video my_video 'small' %}
+      {% endvideo %}
+
       <div class="embed-responsive embed-responsive-16by9">
       </div>
     </div>
