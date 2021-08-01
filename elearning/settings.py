@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "users",
     "courses",
-    'fontawesome_free',
+    'fontawesomefree',
 
     #"embed_video",
 ]
