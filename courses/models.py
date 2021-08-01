@@ -47,7 +47,6 @@ class Lesson(models.Model):
     description=models.TextField(blank=True)
     video_path=models.URLField(blank=True)
     thumbnail=models.ImageField(upload_to= "media/icons",blank=True)
-    #video=EmbedVideoField()
     attached_files=models.FileField(upload_to= "files/lessons",blank=True)
 
 

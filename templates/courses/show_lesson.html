@@ -8,11 +8,19 @@
 
 <!--Lesson container-->
 <section class="py-5 text-center container">
+  
   <div class="row py-lg-5">
-    <div class="col-lg-6 col-md-8 mx-auto">
+    <div class="col-lg-10 col-md-8 mx-auto">
       <h1 class="fw-light">{{lesson.title}}</h1>
       <p class="lead text-muted">{{lesson.description}}</p>
       <p class="lead text-muted">Teacher: {{lesson.teacher.get_full_name}}</p>
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="{{lesson.video_path}}" allowfullscreen></iframe>
+      </div>
+      <div>
+        <button type="button" class="btn btn-outline-secondary"><a href="{{lesson.attached_files.url}}" target="_blank">Download attached files</a></button>
+      </div>
+
       
     </div>
     

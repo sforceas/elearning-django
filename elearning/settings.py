@@ -24,6 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "CHANGE_ME!!!! (P.S. the SECRET_KEY environment variable will be used, if set, instead)."
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -42,7 +43,6 @@ INSTALLED_APPS = [
     "users",
     "courses",
     'fontawesomefree',
-
     #"embed_video",
 ]
 
@@ -134,6 +134,8 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
+
+
 
 # Login url
 LOGIN_URL = 'login' 

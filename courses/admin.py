@@ -51,12 +51,31 @@ class LearningPathAdmin(admin.ModelAdmin):
     readonly_fields = ('created','modified')
 
 @admin.register(Course)
-class Course(admin.ModelAdmin):
+class CourseAdmin(admin.ModelAdmin):
     """Course admin"""
     list_display = ('pk','title','learning_path','active_flag') # Campos que debe mostrar en el display de admin
-    list_display_links=('pk','title','learning_path') # Elementos linkados al detalle
+    list_display_links=('pk','title',) # Elementos linkados al detalle
     list_editable=() # Elementos editables desde admin
     inlines=[LessonInline]
+
+
+    search_field= (
+        'title',
+    )
+
+    list_filter = (
+        'created',
+        'modified',        
+    )
+
+    readonly_fields = ('created','modified')
+
+@admin.register(Lesson)
+class LessonAdmin(admin.ModelAdmin):
+    """Course admin"""
+    list_display = ('pk','title','course','active_flag') # Campos que debe mostrar en el display de admin
+    list_display_links=('pk','title') # Elementos linkados al detalle
+    list_editable=() # Elementos editables desde admin
 
 
     search_field= (

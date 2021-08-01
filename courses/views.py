@@ -60,8 +60,8 @@ def list_lessons(request,course_pk):
 def show_lesson(request,lesson_pk):
     """ Show a lesson"""
     
-    lesson = Course.objects.get(pk=lesson_pk)
-
+    lesson = Lesson.objects.get(pk=lesson_pk)
+    
     context = {
         'lesson':lesson,
     }
