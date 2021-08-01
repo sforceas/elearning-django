@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "users",
     "courses",
+    'fontawesome_free',
+
     #"embed_video",
 ]
 
@@ -120,14 +122,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR)
 STATIC_URL = "/static/"
-STATICFILES_DIR = [
-    os.path.join(BASE_DIR, 'boot'),
-    os.path.join(BASE_DIR, 'static'),
-
+STATICFILES_DIRS = [
+    os.path.join(STATIC_ROOT,'/staticfiles')
 ]
-
 # Media files
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')

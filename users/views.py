@@ -41,7 +41,6 @@ def update_profile(request):
 
 def login_view(request):
     """Login view"""
-
     if request.method == 'POST':
         #print('*'*10)
         username = request.POST['username']
@@ -53,7 +52,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             # Redirect to a success page.
-            return redirect('feed')           
+            return redirect('learningpaths')           
 
         else:
             # Return an 'invalid login' error message.
@@ -82,14 +81,3 @@ def signup_view(request):
         context={'form':form}
     )
 
-@login_required
-def feed_view(request):
-    ''' Feed view for the user '''
-    
-    return render(
-            request=request,
-            template_name='users/feed.html',
-            context={
-                'user': request.user
-            }
-        )

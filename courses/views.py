@@ -42,6 +42,7 @@ def list_courses(request,path_pk):
     }
     return render(request,'courses/courses.html',context)
 
+@login_required
 def list_lessons(request,course_pk):
     """ List existing lessons"""
     
