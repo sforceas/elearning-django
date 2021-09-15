@@ -28,7 +28,7 @@ class Course(models.Model):
     description=models.TextField(blank=True)
     icon=models.ImageField(upload_to= "media/icons")
     
-    duration=models.IntegerField() #Hours of content 
+    duration=models.IntegerField(blank=True) #Hours of content 
     teacher=models.ForeignKey(User,on_delete=models.PROTECT)
     learning_path=models.ForeignKey(LearningPath,on_delete=models.PROTECT)
     

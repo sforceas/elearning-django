@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "users",
     "courses",
     'fontawesomefree',
+    'comments',
     #"embed_video",
 ]
 
