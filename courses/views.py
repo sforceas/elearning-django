@@ -5,6 +5,7 @@ from django.utils.crypto import get_random_string
 
 
 from courses.models import LearningPath,Course,Lesson
+from comments.models import AnswerComment, Comment
 
 
 from datetime import datetime
@@ -59,12 +60,23 @@ def list_lessons(request,course_pk):
 @login_required
 def show_lesson(request,lesson_pk):
     """ Show a lesson"""
-    
+
     lesson = Lesson.objects.get(pk=lesson_pk)
-    
+    comments = list(Comment.objects.filter(lesson=lesson_pk))
+
+    comments_pk_list=[]
+    for comment in comments:
+        comments_pk_list.append(comment.pk)
+
+    answer_comments = list(AnswerComment.objects.filter(comment__in=comments_pk_list))
+
     context = {
         'lesson':lesson,
+        'comments':comments,
+        'answer_comments':answer_comments,
     }
+
+
     return render(request,'courses/show_lesson.html',context)
 
 

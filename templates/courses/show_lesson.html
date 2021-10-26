@@ -6,7 +6,88 @@
 
 {% block container %}
 
-<!--Lesson container-->
+<!--Bloque de contenidos-->
+<div class="MaterialView">
+  <div class="MaterialView-video">
+    <div class="MaterialView-video-item">
+      <div class="MaterialVideo">
+        <div class="VideoPlayer">
+          <video width="530" height="440" controls autoplay>
+            <source src="{{lesson.video_path}}" type="video/mp4"> </source>
+          </video>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<!--Bloque de comunidad-->
+  <div class="MaterialView-comunity">
+    <div class="MaterialView-comunity-wraper">
+      
+      <!--Crear comentario-->
+      <div class="MaterialView-editor">
+
+        <div class="EditorWrapper">
+          <div class="EditorWrapper-input">
+            <!-- INSERTARFORMULARIO DE COMENTARIO-->         
+          </div>
+        </div>
+
+      </div>
+
+      <!--Comentarios-->
+      <div class="CommunityTabs">
+        <div class="CommunityTabs-content">
+          <div class="u-wraper">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="comments-tab" data-bs-toggle="tab" data-bs-target="#comments" type="button" role="tab" aria-controls="comments" aria-selected="true">Aportes</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="questions-tab" data-bs-toggle="tab" data-bs-target="#questions" type="button" role="tab" aria-controls="questions" aria-selected="false">Preguntas</button>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="CommunityTabs-content-content">
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+                <p>EJEMMPLO DE APORTE</p>
+              </div>
+              <div class="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
+                <p>EJEMMPLO DE PREGUNTA</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+        
+      
+      
+      </div>
+
+
+
+
+    </div>
+  
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!--
+  OBSOLETO
+  Lesson container-->
 <section class="py-5 text-center container">
   
   <div class="row py-lg-5">
@@ -22,11 +103,34 @@
       </div>
       <div>
         <button type="button" class="btn btn-outline-secondary"><a href="{{lesson.attached_files.url}}" target="_blank">Download attached files</a></button>
-      </div>
-
-      
-    </div>
-    
   </div>
-  
+<!--End Lesson container-->
+
+
+
+<!-- Comments container-->
+  <h2>Coments</h2>
+  {% for comment in comments %}
+    <div class="comment">
+      <p class="info">
+        {{ comment.created }} {{ comment.body|linebreaks }}
+      </p>
+    </div>
+  {% empty %}
+  <p>There are no comments yet.</p>
+  {% endfor %}
+
+  <h2>Answer Comments</h2>
+  <p>
+    {% for answer_comment in answer_comments %}
+    <div class="comment">
+      <p class="info">
+        {{ answer_comment.created }} {{ answer_comment.body|linebreaks }}
+      </p>
+    </div>
+  {% empty %}
+  <p>There are no comments yet.</p>
+  {% endfor %}
+  </p>
 {% endblock %} 
+<!-- End Comments container-->
