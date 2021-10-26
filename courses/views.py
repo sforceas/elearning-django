@@ -62,18 +62,29 @@ def show_lesson(request,lesson_pk):
     """ Show a lesson"""
 
     lesson = Lesson.objects.get(pk=lesson_pk)
-    comments = list(Comment.objects.filter(lesson=lesson_pk))
+    comments = list(Comment.objects.filter(lesson=lesson_pk,cathegory='comment'))
+    questions = list(Comment.objects.filter(lesson=lesson_pk,cathegory='question'))
 
+    # Crear lista de respuestas de comentarios
     comments_pk_list=[]
     for comment in comments:
         comments_pk_list.append(comment.pk)
-
     answer_comments = list(AnswerComment.objects.filter(comment__in=comments_pk_list))
+
+
+    # Crear lista de respuestas de preguntas
+    questions_pk_list=[]
+    for question in questions:
+        questions_pk_list.append(question.pk)
+    answer_questions = list(AnswerComment.objects.filter(comment__in=questions_pk_list))
+
 
     context = {
         'lesson':lesson,
         'comments':comments,
+        'questions':questions,
         'answer_comments':answer_comments,
+        'answer_questions':answer_questions,
     }
 
 

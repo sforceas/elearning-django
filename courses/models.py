@@ -45,7 +45,8 @@ class Lesson(models.Model):
     """Lesson model"""
     title=models.CharField(max_length=50)
     description=models.TextField(blank=True)
-    video_path=models.URLField(blank=True)
+    video_url=models.URLField(blank=True)
+    video_path=models.FileField(upload_to= "media/lessons/videos",blank=True)
     thumbnail=models.ImageField(upload_to= "media/icons",blank=True)
     attached_files=models.FileField(upload_to= "files/lessons",blank=True)
 

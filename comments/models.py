@@ -8,7 +8,8 @@ from courses.models import Lesson
 class Comment(models.Model): 
     lesson = models.ForeignKey(Lesson,on_delete=models.CASCADE,)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    body = models.TextField() 
+    body = models.TextField()
+    cathegory = models.CharField(max_length=255, choices=[('comment','Comment'),('question','Question'),],default='comment') #TEMPORAL
     
     active_flag = models.BooleanField(default=True) 
 
