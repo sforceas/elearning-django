@@ -1,0 +1,25 @@
+<!-- Comments container-->
+<h2>Questions</h2>
+{% for question in questions %}
+  <div class="comment">
+    <p class="info">
+      {{ question.created }} {{ question.body|linebreaks }}
+    </p>
+  </div>
+{% empty %}
+<p>There are no questions yet.</p>
+{% endfor %}
+
+<h2>Answer questions</h2>
+<p>
+  {% for answer_question in answer_questions %}
+  <div class="comment">
+    <p class="info">
+      {{ answer_question.created }} {{ answer_question.body|linebreaks }}
+    </p>
+  </div>
+{% empty %}
+<p>There are no answer questions yet.</p>
+{% endfor %}
+</p>
+<!-- End Comments container-->
