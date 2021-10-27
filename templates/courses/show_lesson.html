@@ -6,71 +6,86 @@
 
 {% block container %}
 
+<div class="MaterialView container-fluid row">
+  
 <!--Bloque de contenidos-->
-<div class="MaterialView">
-  <div class="MaterialView-video">
-    <div class="MaterialView-video-item">
-      <div class="MaterialVideo">
-        <div class="VideoPlayer">
-          <video width="530" height="440" controls autoplay>
-            <source src="{{lesson.video_path.url}}" type="video/mp4"></source>
-          </video>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <div class="MaterialView-content">
-    <div class="MaterialView-content-wraper">
-      <div class="Header-course">
-        <div class="Header-course-info">
-          <img class="Header-course-info-badge" src="https://static.platzi.com/media/achievements/badges-django-avanzado-45e0f52b-5a5c-4b5d-9941-afd76cc58677.png" alt="Curso Avanzado de Django" loading="lazy">
-          <div class="Header-course-info-content">
-            <a href=""><h2>{{lesson.course}}</h2></a>
-            <img src="https://static.platzi.com/media/avatars/avatars/pablotrinidad_240414bc-717c-485a-a7d3-4b314c682028.jpg" alt="" loading="lazy">
-            <p>{{lesson.course.teacher}}</p>
+  <div class="col m-1 border border-rounded bg-light">
+    <div class="MaterialView-video container-fluid mt-3">
+      <div class="MaterialView-video-item m-0">
+        <div class="MaterialVideo m-0">
+          <div class="VideoPlayer m-0">
+            <video width="100%" controls autoplay>
+              <source src="{{lesson.video_path.url}}" type="video/mp4"></source>
+            </video>
           </div>
         </div>
-        
-        <div class="Header-course-actions">
-          <button class="Header-course-actions-prev">
-            <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-to-left" class="svg-inline--fa fa-arrow-to-left fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M247.9 412.5l-148.4-148c-4.7-4.7-4.7-12.3 0-17l148.4-148c4.7-4.7 12.3-4.7 17 0l19.6 19.6c4.8 4.8 4.7 12.5-.2 17.1L187.2 230H436c6.6 0 12 5.4 12 12v28c0 6.6-5.4 12-12 12H187.2l97.1 93.7c4.8 4.7 4.9 12.4.2 17.1l-19.6 19.6c-4.7 4.8-12.3 4.8-17 .1zM52 436V76c0-6.6-5.4-12-12-12H12C5.4 64 0 69.4 0 76v360c0 6.6 5.4 12 12 12h28c6.6 0 12-5.4 12-12z"></path></svg>
-            <div class="Header-tooltip">
-              <p>Titulo clase anterior</p>
-            </div>
-          </button>
+      </div>
+    </div>
 
-          <button class="Header-course-actions-next">
-            <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-to-right" class="svg-inline--fa fa-arrow-to-right fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M200.1 99.5l148.4 148c4.7 4.7 4.7 12.3 0 17l-148.4 148c-4.7 4.7-12.3 4.7-17 0l-19.6-19.6c-4.8-4.8-4.7-12.5.2-17.1l97.1-93.7H12c-6.6 0-12-5.4-12-12v-28c0-6.6 5.4-12 12-12h248.8l-97.1-93.7c-4.8-4.7-4.9-12.4-.2-17.1l19.6-19.6c4.7-4.9 12.3-4.9 17-.2zM396 76v360c0 6.6 5.4 12 12 12h28c6.6 0 12-5.4 12-12V76c0-6.6-5.4-12-12-12h-28c-6.6 0-12 5.4-12 12z"></path></svg>
-            <span>Siguiente clase</span>
-            <div class="Header-tooltip">
-              <p>Titulo clase siguiente</p>
+    <div class="MaterialView-content bg-light">
+      <div class="MaterialView-content-wraper bg-ligth container-fluid">
+        <div class="Header-course bg-light row">
+          <div class="Header-course-info media col">
+            <img class="Header-course-info-badge align-self-start mr-3 rounded-circle" height="60px" width="60px" src="{{lesson.course.icon.url}}" alt="{{lesson.course}}" loading="lazy">
+            <div class="Header-course-info-content media-body">
+              <a class="mt-0 mb-0 text-decoration-none" href=""><h2 class="text-font-weight-bold mb-0">{{lesson.course}}</h2></a>
+              <p class="mt-0">{{lesson.course.teacher}}</p>
             </div>
-          </button>
+          </div>
+          <div class="Header-course-actions col-lg-3">
+            <button class="Header-course-actions-prev btn btn-primary" data-toggle="tooltip" data-placement="left" title="Clase anerior">
+              <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-to-left" class="svg-inline--fa fa-arrow-to-left fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M247.9 412.5l-148.4-148c-4.7-4.7-4.7-12.3 0-17l148.4-148c4.7-4.7 12.3-4.7 17 0l19.6 19.6c4.8 4.8 4.7 12.5-.2 17.1L187.2 230H436c6.6 0 12 5.4 12 12v28c0 6.6-5.4 12-12 12H187.2l97.1 93.7c4.8 4.7 4.9 12.4.2 17.1l-19.6 19.6c-4.7 4.8-12.3 4.8-17 .1zM52 436V76c0-6.6-5.4-12-12-12H12C5.4 64 0 69.4 0 76v360c0 6.6 5.4 12 12 12h28c6.6 0 12-5.4 12-12z"></path></svg>
+            </button>
+
+            <button class="Header-course-actions-next btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Siguiente clase">
+              <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="arrow-to-right" class="svg-inline--fa fa-arrow-to-right fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M200.1 99.5l148.4 148c4.7 4.7 4.7 12.3 0 17l-148.4 148c-4.7 4.7-12.3 4.7-17 0l-19.6-19.6c-4.8-4.8-4.7-12.5.2-17.1l97.1-93.7H12c-6.6 0-12-5.4-12-12v-28c0-6.6 5.4-12 12-12h248.8l-97.1-93.7c-4.8-4.7-4.9-12.4-.2-17.1l19.6-19.6c4.7-4.9 12.3-4.9 17-.2zM396 76v360c0 6.6 5.4 12 12 12h28c6.6 0 12-5.4 12-12V76c0-6.6-5.4-12-12-12h-28c-6.6 0-12 5.4-12 12z"></path></svg>
+              <span>Siguiente clase</span>
+            </button>
+
+          </div>
         </div>
 
-      </div>
+        <div class="Header-class">
+          <div class="Header-class-title align-center row">
+            <h2 class="col">{{lesson.title}}</h2>
+            <h2 class="col">1/20</h2>
+          </div>
+        </div>
 
-      <div class="Header-class">
-        <div class="Header-class-title">
-          <h1>{{lesson.title}}</h1>
-          <span>1/20</span>
+        <div class="Resources mt-2 mb-2">
+          <div class="Resources-description">
+            <p>{{lesson.description}}</p>
+          </div>
+
+          <div class="Files">
+            <h3>Archivos de la clases</h3>
+            <button type="button" class="btn btn-outline-secondary btn-block">
+              <p class="text-primary m-0">Apuntes de la clase</p>
+            </button>
+          </div>
+
+          <div class="Links">
+            <h3>Lecturas recomendadas</h3>
+            <button type="button" class="btn btn-outline-secondary btn-block">
+              <p class="text-primary m-0">Wikipedia - Una lectura recomendada</p>
+            </button>
+
+          </div>
         </div>
       </div>
     </div>
   </div>
 
 <!--Bloque de comunidad-->
-  <div class="MaterialView-comunity">
-    <div class="MaterialView-comunity-wraper">
+  <div class="MaterialView-comunity col col-lg-3 m-1 border">
+    <div class="MaterialView-comunity-wraper ">
       
       <!--Crear comentario-->
       <div class="MaterialView-editor">
-
         <div class="EditorWrapper">
           <div class="EditorWrapper-input">
             <!-- INSERTARFORMULARIO DE COMENTARIO-->
-            <input type="text" name="" id="" placeholder="Escribe tu comentario...">       
+            {%include 'courses/comment_form.html'%}
           </div>
         </div>
 
@@ -100,48 +115,10 @@
               </div>
             </div>
           </div>
-
         </div>
-
-
-        
-      
-      
       </div>
     </div>
-  
   </div>
 </div>
 
-
-
-
 {% endblock %} 
-
-
-
-
-
-<!--
-  OBSOLETO
-  Lesson container-->
-<section class="py-5 text-center container">
-  
-  <div class="row py-lg-5">
-    <div class="col-lg-10 col-md-8 mx-auto">
-      <h1 class="fw-light">{{lesson.title}}</h1>
-      <p class="lead text-muted">{{lesson.description}}</p>
-      <p class="lead text-muted">Teacher: {{lesson.teacher.get_full_name}}</p>
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="{{lesson.video_path}}" allowfullscreen></iframe>
-        <video width="530" height="440" controls autoplay>
-          <source src="/media/courses/videos/test.mp4" type="video/mp4"> </source>
-        </video>
-      </div>
-      <div>
-        <button type="button" class="btn btn-outline-secondary"><a href="{{lesson.attached_files.url}}" target="_blank">Download attached files</a></button>
-  </div>
-<!--End Lesson container-->
-
-
-
