@@ -1,9 +1,10 @@
 """User views"""
 
 # Django
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from courses.models import CourseProgress
 # Forms
 from users.forms import ProfileForm, SignupForm
 
@@ -24,7 +25,7 @@ def update_profile(request):
             profile.biography = data['biography']
             profile.save()
 
-            return redirect('feed')
+            return redirect('learningpaths')
 
     else:
         form = ProfileForm()
@@ -42,17 +43,14 @@ def update_profile(request):
 def login_view(request):
     """Login view"""
     if request.method == 'POST':
-        #print('*'*10)
         username = request.POST['username']
         password = request.POST['password']
-        #print(username,password)
-        #print('*'*10)
         user = authenticate(request,username=username,password=password)
 
         if user is not None:
             login(request, user)
             # Redirect to a success page.
-            return redirect('learningpaths')           
+            return redirect('home')           
 
         else:
             # Return an 'invalid login' error message.
@@ -63,7 +61,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     # Redirect to a success page
-    return redirect('login')           
+    return redirect('learningpaths')           
 
 def signup_view(request):
     '''Signup view'''
@@ -81,3 +79,18 @@ def signup_view(request):
         context={'form':form}
     )
 
+@login_required
+def home_view(request):
+    """ Student home page"""
+
+    #Load course progress
+    course_progress = list(CourseProgress.objects.filter(user=request.user,registered_flag=True).order_by('-modified'))
+                                
+    print(course_progress)
+
+
+    context = {
+        'user':request.user,
+        'course_progress':course_progress,        
+    }
+    return render(request,'users/home.html',context)

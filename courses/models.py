@@ -1,7 +1,10 @@
+from django.core.files.storage import default_storage
 from django.db import models
 #from embed_video.fields import EmbedVideoField
 
 from django.db.models.aggregates import Max
+from django.db.models.deletion import CASCADE
+from django.db.models.fields.related import ManyToManyField
 
 from users.models import User
 
@@ -26,7 +29,7 @@ class Course(models.Model):
     """Course model"""
     title=models.CharField(max_length=50)
     description=models.TextField(blank=True)
-    icon=models.ImageField(upload_to= "media/icons")
+    icon=models.ImageField(upload_to= "media/icons", blank=True)
     
     duration=models.IntegerField(blank=True) #Hours of content 
     teacher=models.ForeignKey(User,on_delete=models.PROTECT)
@@ -62,3 +65,21 @@ class Lesson(models.Model):
     def __str__(self):
         """Return username."""
         return self.title
+
+
+class CourseProgress(models.Model):
+    """Tracking of a user progress on a course"""
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    course=models.ForeignKey(Course,on_delete=models.CASCADE)
+    completed_lessons=models.ManyToManyField(Lesson,related_name='completed_lessons')
+    last_lesson=models.ForeignKey(Lesson,on_delete=models.CASCADE,related_name='last_lesson')
+
+    approved_flag=models.BooleanField(default=False)
+    registered_flag=models.BooleanField(default=True)
+
+    created=models.DateTimeField(auto_now_add=True)
+    modified=models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        """Return username."""
+        return 'Progress in {} by {}'.format(self.course.title,self.user.username) 

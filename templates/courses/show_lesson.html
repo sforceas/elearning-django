@@ -13,11 +13,17 @@
     <div class="MaterialView-video container-fluid mt-3">
       <div class="MaterialView-video-item m-0">
         <div class="MaterialVideo m-0">
-          <div class="VideoPlayer m-0">
-            <video width="100%" controls autoplay>
-              <source src="{{lesson.video_path.url}}" type="video/mp4"></source>
-            </video>
-          </div>
+          {% if lesson.video_path %}
+            <div class="VideoPlayer m-0">
+              <video width="100%" controls>
+                <source src="{{lesson.video_path.url}}" type="video/mp4"></source>
+              </video>
+            </div>
+          {% else %}
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-itemd m-0" src="{{lesson.video_url}}"></iframe>
+          </div>  
+          {%endif%}
         </div>
       </div>
     </div>
@@ -29,7 +35,7 @@
             <img class="Header-course-info-badge align-self-start mr-3 rounded-circle" height="60px" width="60px" src="{{lesson.course.icon.url}}" alt="{{lesson.course}}" loading="lazy">
             <div class="Header-course-info-content media-body">
               <a class="mt-0 mb-0 text-decoration-none" href=""><h2 class="text-font-weight-bold mb-0">{{lesson.course}}</h2></a>
-              <p class="mt-0">{{lesson.course.teacher}}</p>
+              <p class="mt-0">Profesor: {{lesson.teacher.get_full_name}}</p>
             </div>
           </div>
           <div class="Header-course-actions col-lg-3">

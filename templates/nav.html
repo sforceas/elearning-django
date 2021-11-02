@@ -9,15 +9,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Clases <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{% url "learningpaths" %}">Clases <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Forum</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{request.user.username}}
-          </a>
+          <div class="media">
+            <img class="mr-2" src="{{request.user.profile.image.url}}" width="25px" height="25px" alt="imagen">
+            <a class="nav-link" href="{% url "update_profile" %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{request.user.get_full_name}}
+            </a>
+
+          </div>
+
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">

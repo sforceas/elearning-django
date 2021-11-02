@@ -1,0 +1,30 @@
+{% extends "base.html"%}
+
+{%block head_content%}
+<title>Home</title>
+{%endblock%}
+
+
+{%block container%}
+
+<h1>Welcome {{user.get_full_name}}</h1>
+<h2>Continúa donde lo dejaste</h2>
+
+
+
+<div class="card-group">
+    {% for progress in course_progress %}
+    <div class="card flex" style="width: 18rem;">
+        <img src="{{progress.last_lesson.thumbnail.url}}" class="card-img-top" alt="Thumbnail" height="400px">
+        <div class="card-body">
+          <h5 class="card-title">{{progress.last_lesson.title}}</h5>
+          <p class="card-text">Course: <a href="course/{{progress.course.pk}}">{{progress.course.title}}</a></p>
+          <a href="/lesson/{{progress.last_lesson.pk}}" class="btn btn-primary">Go to lesson</a>
+        </div>
+    </div>
+    {% endfor %}
+</div> 
+    
+<h2>Tus cursos terminados:</h2>
+
+{%endblock%}

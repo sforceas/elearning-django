@@ -5,7 +5,7 @@
 from django.contrib import admin
 
 #Models
-from courses.models import LearningPath, Course, Lesson
+from courses.models import CourseProgress, LearningPath, Course, Lesson
 
 # Inlime models
 
@@ -80,6 +80,26 @@ class LessonAdmin(admin.ModelAdmin):
 
     search_field= (
         'title',
+    )
+
+    list_filter = (
+        'created',
+        'modified',        
+    )
+
+    readonly_fields = ('created','modified')
+
+@admin.register(CourseProgress)
+class CourseProgressAdmin(admin.ModelAdmin):
+    """Course progress admin"""
+    list_display = ('pk','user','course','last_lesson','approved_flag','registered_flag') # Campos que debe mostrar en el display de admin
+    list_display_links=('pk','user','course') # Elementos linkados al detalle
+    list_editable=() # Elementos editables desde admin
+
+
+    search_field= (
+        'user',
+        'course',
     )
 
     list_filter = (

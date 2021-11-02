@@ -3,11 +3,10 @@ from django.db import models
 from users.models import User
 from courses.models import Lesson
 
-
 # Create your models here.
 class Comment(models.Model): 
-    lesson = models.ForeignKey(Lesson,on_delete=models.CASCADE,)
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson,on_delete=models.CASCADE,related_name='comments')
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="usernames")
     body = models.TextField()
     cathegory = models.CharField(max_length=255, choices=[('comment','Comment'),('question','Question'),],default='comment') #TEMPORAL
     

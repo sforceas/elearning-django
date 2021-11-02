@@ -33,7 +33,8 @@ urlpatterns = [
     path('users/login',users_views.login_view, name="login"),
     path('users/logout',users_views.logout_view, name="logout"),
     path('users/signup',users_views.signup_view, name="signup"),
-    path('users/logout',users_views.update_profile, name="update_profile"),
+    path('users/profile',users_views.update_profile, name="update_profile"),
+    path('home',users_views.home_view, name="home"),
 
     #ADMIN
     path('admin/', admin.site.urls),
