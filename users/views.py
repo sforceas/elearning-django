@@ -50,7 +50,9 @@ def login_view(request):
         if user is not None:
             login(request, user)
             # Redirect to a success page.
-            return redirect(request.META['HTTP_REFERER'])         
+            
+            #return redirect(request.META['HTTP_REFERER'])
+            return redirect('home')      
 
         else:
             # Return an 'invalid login' error message.
@@ -84,10 +86,12 @@ def home_view(request):
     """ Student home page"""
 
     #Load course progress
-    course_progress = list(CourseProgress.objects.filter(user=request.user,registered_flag=True).order_by('-modified'))
+    ongoing_courses = list(CourseProgress.objects.filter(user=request.user,registered_flag=True,approved_flag=False).order_by('-modified'))
+    approved_courses = list(CourseProgress.objects.filter(user=request.user,registered_flag=True,approved_flag=True).order_by('-modified'))
 
     context = {
         'user':request.user,
-        'course_progress':course_progress,        
+        'ongoing_courses':ongoing_courses,
+        'approved_courses':approved_courses,        
     }
     return render(request,'users/home.html',context)

@@ -7,6 +7,7 @@ from django.db.models.deletion import CASCADE
 from django.db.models.fields.related import ManyToManyField
 
 from users.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class LearningPath(models.Model):
@@ -29,7 +30,8 @@ class Course(models.Model):
     """Course model"""
     title=models.CharField(max_length=50)
     description=models.TextField(blank=True)
-    icon=models.ImageField(upload_to= "media/icons", blank=True)
+    #icon=models.ImageField(upload_to= "media/icons", blank=True)
+    icon=CloudinaryField('image')
     
     duration=models.IntegerField(blank=True) #Hours of content 
     teacher=models.ForeignKey(User,on_delete=models.PROTECT)
