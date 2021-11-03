@@ -14,7 +14,9 @@ class LearningPath(models.Model):
     """Learning Path model"""
     title=models.CharField(max_length=50)
     description=models.TextField(blank=True)
-    icon=models.ImageField(upload_to= "media/icons",blank=True)
+    #icon=models.ImageField(upload_to= "media/icons",blank=True)
+    icon=CloudinaryField('image')
+    thumbnail=CloudinaryField('image')
 
     active_flag=models.BooleanField(default=False)
 
@@ -51,10 +53,11 @@ class Lesson(models.Model):
     title=models.CharField(max_length=50)
     description=models.TextField(blank=True)
     video_url=models.URLField(blank=True)
-    video_path=models.FileField(upload_to= "media/lessons/videos",blank=True)
-    thumbnail=models.ImageField(upload_to= "media/icons",blank=True)
+    video_path=CloudinaryField('video')
+    thumbnail=CloudinaryField('image')
+    #video_path=models.FileField(upload_to= "media/lessons/videos",blank=True)
+    #thumbnail=models.ImageField(upload_to= "media/icons",blank=True)
     attached_files=models.FileField(upload_to= "files/lessons",blank=True)
-
 
     teacher=models.ForeignKey(User,on_delete=models.PROTECT)
     course=models.ForeignKey(Course,on_delete=models.PROTECT)
@@ -67,7 +70,6 @@ class Lesson(models.Model):
     def __str__(self):
         """Return username."""
         return self.title
-
 
 class CourseProgress(models.Model):
     """Tracking of a user progress on a course"""
