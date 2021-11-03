@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'fontawesomefree',
     'bootstrap5',
     'comments',
+    'crispy_forms',
     #"embed_video",
 ]
 
@@ -160,4 +161,8 @@ LOGIN_URL = 'login'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Crispy forms for Bootstrap
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 django_heroku.settings(locals())

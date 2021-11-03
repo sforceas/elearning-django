@@ -1,25 +1,27 @@
-<!-- Comments container-->
+<!-- Questions container-->
 <h2>Questions</h2>
 {% for question in questions %}
   <div class="comment">
     <p class="info">
-      {{ question.created }} {{ question.body|linebreaks }}
-    </p>
+      <a href="/users/{{question.user.username}}"><strong>{{question.user.get_full_name}}</strong></a> at {{ question.created|date:"M d, Y"  }} 
+      {{ question.body|linebreaks }}
+      </p>
+      {% if request.user == question.user %}
+      <a href="/comment/delete/{{question.pk}}"><i class="fas fa-trash fa-sm" style="color: brown;"></i></a>
+      {%endif%}
   </div>
-{% empty %}
-<p>There are no questions yet.</p>
-{% endfor %}
 
-<h2>Answer questions</h2>
-<p>
-  {% for answer_question in answer_questions %}
-  <div class="comment">
-    <p class="info">
-      {{ answer_question.created }} {{ answer_question.body|linebreaks }}
-    </p>
-  </div>
+  {% for answer_question in question.answer_questions.all %}
+  <div class="comment ml-4">
+      <p class="info">
+      <a href="/users/{{answer_question.user.username}}"><strong>{{answer_question.user.get_full_name}}</strong></a> at {{ answer_question.created|date:"M d, Y"  }} 
+      {{ answer_question.body|linebreaks }}
+  </p>
+  </div>            
+  {% endfor %}
+
 {% empty %}
-<p>There are no answer questions yet.</p>
+  <p>There are no questions yet.</p>
 {% endfor %}
-</p>
-<!-- End Comments container-->
+<!-- End Questions container-->
+

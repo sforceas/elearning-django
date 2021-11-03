@@ -5,6 +5,7 @@ from courses.models import Lesson
 
 # Create your models here.
 class Comment(models.Model): 
+    id = models.BigAutoField(primary_key=True)
     lesson = models.ForeignKey(Lesson,on_delete=models.CASCADE,related_name='comments')
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="usernames")
     body = models.TextField()
@@ -23,7 +24,7 @@ class Comment(models.Model):
 
 
 class AnswerComment(models.Model):
-    comment = models.ForeignKey(Comment,on_delete=models.CASCADE,)
+    comment = models.ForeignKey(Comment,related_name='answer_comment',on_delete=models.CASCADE,)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     body = models.TextField() 
     

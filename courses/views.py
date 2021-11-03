@@ -58,12 +58,10 @@ def list_lessons(request,course_pk):
     }
     return render(request,'courses/lessons.html',context)
 
-
 @login_required
 def show_lesson(request,lesson_pk):
     """ Show a lesson"""
 
-    #lesson = Lesson.objects.get(pk=lesson_pk)
     lesson = get_object_or_404(Lesson, pk=lesson_pk,
                                    active_flag=True,)
     

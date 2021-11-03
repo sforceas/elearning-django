@@ -5,7 +5,7 @@ from .models import Comment,AnswerComment
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('user', 'lesson', 'created', 'active_flag')
+    list_display = ('pk','user', 'lesson', 'created', 'active_flag')
     list_filter = ('active_flag', 'created', 'updated')
     search_fields = ('user', 'comment')
 

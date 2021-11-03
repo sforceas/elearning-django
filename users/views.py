@@ -50,7 +50,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             # Redirect to a success page.
-            return redirect('home')           
+            return redirect(request.META['HTTP_REFERER'])         
 
         else:
             # Return an 'invalid login' error message.
@@ -85,9 +85,6 @@ def home_view(request):
 
     #Load course progress
     course_progress = list(CourseProgress.objects.filter(user=request.user,registered_flag=True).order_by('-modified'))
-                                
-    print(course_progress)
-
 
     context = {
         'user':request.user,
