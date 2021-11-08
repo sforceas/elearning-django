@@ -14,9 +14,8 @@ class LearningPath(models.Model):
     """Learning Path model"""
     title=models.CharField(max_length=50)
     description=models.TextField(blank=True)
-    #icon=models.ImageField(upload_to= "media/icons",blank=True)
-    icon=CloudinaryField('image')
-    thumbnail=CloudinaryField('image')
+    icon=CloudinaryField('Path Icon',blank=True, folder= '/learning_paths/icons/')
+    thumbnail=CloudinaryField('Path Thumbnail',blank=True, folder= '/learning_paths/thumbnails/')
 
     active_flag=models.BooleanField(default=False)
 
@@ -32,8 +31,8 @@ class Course(models.Model):
     """Course model"""
     title=models.CharField(max_length=50)
     description=models.TextField(blank=True)
-    #icon=models.ImageField(upload_to= "media/icons", blank=True)
-    icon=CloudinaryField('image')
+    icon=CloudinaryField('Course Icon',blank=True, folder= '/courses/icons/')
+    thumbnail=CloudinaryField('Course Thumbnail',blank=True, folder= '/courses/thumbnails/')
     
     duration=models.IntegerField(blank=True) #Hours of content 
     teacher=models.ForeignKey(User,on_delete=models.PROTECT)
@@ -53,11 +52,8 @@ class Lesson(models.Model):
     title=models.CharField(max_length=50)
     description=models.TextField(blank=True)
     video_url=models.URLField(blank=True)
-    video_path=CloudinaryField('video')
-    thumbnail=CloudinaryField('image')
-    #video_path=models.FileField(upload_to= "media/lessons/videos",blank=True)
-    #thumbnail=models.ImageField(upload_to= "media/icons",blank=True)
-    attached_files=models.FileField(upload_to= "files/lessons",blank=True)
+    thumbnail=CloudinaryField('Thumbnail',blank=True, folder= '/lessons/thumbnails/')
+    attached_files=CloudinaryField('Attached files (.zip)',blank=True,folder='/lessons/attached_files/')
 
     teacher=models.ForeignKey(User,on_delete=models.PROTECT)
     course=models.ForeignKey(Course,on_delete=models.PROTECT)

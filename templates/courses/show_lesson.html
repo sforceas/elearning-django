@@ -13,17 +13,15 @@
     <div class="MaterialView-video container-fluid mt-3">
       <div class="MaterialView-video-item m-0">
         <div class="MaterialVideo m-0">
-          {% if lesson.video_path %}
-            <div class="VideoPlayer m-0">
-              <video width="100%" controls>
-                <source src="{{lesson.video_path.url}}" type="video/mp4"></source>
-              </video>
-            </div>
-          {% else %}
           <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-itemd m-0" src="{{lesson.video_url}}"></iframe>
+            <iframe
+              src="{{lesson.video_url}}"
+              width="640"
+              allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+              allowfullscreen
+              frameborder="0"
+            ></iframe>
           </div>  
-          {%endif%}
         </div>
       </div>
     </div>
